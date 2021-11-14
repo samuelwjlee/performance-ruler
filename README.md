@@ -8,6 +8,7 @@ Measure client-side page loading speed using `performance.mark` and `performance
 function usePerformanceMarker(name: string) {
   const start = `${name}-start`
   const end = `${name}-end`
+
   return {
     startMarker: () => performance.mark(start),
     endMarker: () => performance.mark(end),
@@ -19,12 +20,13 @@ function usePerformanceMarker(name: string) {
 👇🏼 Consume usePerformanceMarker like this
 
 ```javascript
-const { startMarker } = usePerformanceMarker('page-load')
-
 function App() {
+  const { startMarker } = usePerformanceMarker('page-load')
+
   function navigate() {
     startMarker()
   }
+
   return <button onClick={navigate} />
 }
 
