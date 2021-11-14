@@ -16,7 +16,7 @@ function usePerformanceMarker(name: string) {
 }
 ```
 
-👇🏼 Consume perusePerformanceMarker like this
+👇🏼 Consume usePerformanceMarker like this
 
 ```javascript
 const { startMarker } = usePerformanceMarker('page-load')
