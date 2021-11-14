@@ -1,6 +1,6 @@
 # performance-ruler
 
-Measure client-side page loading speed using `performance.mark` and `performance.measure`.
+Measure page loading speed using `performance.mark` and `performance.measure`.
 
 👇🏼 Custom hook defined to dynamically "hook" markers and measure func
 
