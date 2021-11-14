@@ -2,7 +2,7 @@
 
 Measure page loading speed using `performance.mark` and `performance.measure`.
 
-👇🏼 Custom hook defined to dynamically "hook" markers and measure func
+👇🏼 Custom hook defined to dynamically 🪝 markers and measure func
 
 ```javascript
 function usePerformanceMarker(name: string) {
@@ -12,7 +12,10 @@ function usePerformanceMarker(name: string) {
   return {
     startMarker: () => performance.mark(start),
     endMarker: () => performance.mark(end),
-    measure: () => performance.measure(name, start, end),
+    measure: () => {
+      /* fire analytics here if desired */
+      performance.measure(name, start, end)
+    },
   }
 }
 ```
@@ -40,7 +43,7 @@ function Page() {
 }
 ```
 
-👇🏼 this is would could be sent to analytics if desired
+👇🏼 this is the metric measured by the performance API
 
 ```json
 {

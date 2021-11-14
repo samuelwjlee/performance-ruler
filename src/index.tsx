@@ -13,7 +13,7 @@ function usePerformanceMarker(name: string) {
   return {
     startMarker: () => performance.mark(start),
     endMarker: () => performance.mark(end),
-    /* this func could fire analytics if desired */
+    /* fire analytics here if desired */
     measure: () => performance.measure(name, start, end),
   }
 }
