@@ -7,7 +7,7 @@ const MOCK_API_RESPONSE_SPEED = 1000
 /**
  * hook performance marker anywhere with custom name
  */
-function usePerformanceMarker(name: string) {
+function usePerformanceRuler(name: string) {
   const start = `${name}-start`
   const end = `${name}-end`
   return {
@@ -20,7 +20,7 @@ function usePerformanceMarker(name: string) {
 
 function Terminal({ loading }: { loading: boolean }) {
   const [metric, setMetric] = useState('loading...')
-  const { measure, endMarker } = usePerformanceMarker('page-load')
+  const { measure, endMarker } = usePerformanceRuler('page-load')
 
   useEffect(() => {
     if (!loading) {
@@ -43,7 +43,7 @@ function Terminal({ loading }: { loading: boolean }) {
 
 function App() {
   const [loaded, setLoaded] = useState(false)
-  const { startMarker } = usePerformanceMarker('page-load')
+  const { startMarker } = usePerformanceRuler('page-load')
 
   let timeoutId: NodeJS.Timeout | null = null
 
