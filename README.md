@@ -4,7 +4,7 @@ Measure page loading speed using `performance.mark` and `performance.measure`.
 
 👇🏼 Custom hook defined to dynamically 🪝 markers and measure func
 
-```javascript
+```typescript
 function usePerformanceRuler(name: string) {
   const start = `${name}-start`
   const end = `${name}-end`
@@ -22,7 +22,7 @@ function usePerformanceRuler(name: string) {
 
 👇🏼 Consume usePerformanceRuler like this
 
-```javascript
+```typescript
 function App() {
   const { startMarker } = usePerformanceRuler('page-load')
 

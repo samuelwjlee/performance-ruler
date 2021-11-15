@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './index.css'
 
 const MOCK_API_RESPONSE_SPEED = 1000
@@ -19,7 +19,7 @@ function usePerformanceRuler(name: string) {
 }
 
 function Terminal({ loading }: { loading: boolean }) {
-  const [metric, setMetric] = useState('loading...')
+  const [report, setReport] = useState('loading...')
   const { measure, endMarker } = usePerformanceRuler('page-load')
 
   useEffect(() => {
@@ -30,13 +30,13 @@ function Terminal({ loading }: { loading: boolean }) {
        */
       endMarker()
 
-      setMetric(JSON.stringify(measure(), null, 2))
+      setReport(JSON.stringify(measure(), null, 2))
     }
   }, [loading])
 
   return (
     <code className="Code">
-      <pre>{metric}</pre>
+      <pre>{report}</pre>
     </code>
   )
 }
@@ -45,7 +45,7 @@ function App() {
   const [loaded, setLoaded] = useState(false)
   const { startMarker } = usePerformanceRuler('page-load')
 
-  let timeoutId: NodeJS.Timeout | null = null
+  let timeoutId = useRef<null | NodeJS.Timeout>(null)
 
   useEffect(() => {
     /**
@@ -55,14 +55,14 @@ function App() {
      */
     startMarker()
 
-    timeoutId = setTimeout(() => {
+    timeoutId.current = setTimeout(() => {
       setLoaded((loaded) => !loaded)
 
-      if (timeoutId) {
-        clearTimeout(timeoutId)
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current)
       }
     }, MOCK_API_RESPONSE_SPEED)
-  }, [])
+  })
 
   return (
     <div className="App">
